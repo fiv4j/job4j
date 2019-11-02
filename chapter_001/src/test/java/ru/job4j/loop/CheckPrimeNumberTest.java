@@ -6,11 +6,11 @@ import static org.junit.Assert.assertThat;
 
 public class CheckPrimeNumberTest {
     @Test
-    public void when1IsTrue() {
+    public void when1IsFalse() {
         CheckPrimeNumber test = new CheckPrimeNumber();
         assertThat(
                 test.check(1),
-                is(true)
+                is(false)
         );
     }
 
