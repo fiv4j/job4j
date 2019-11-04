@@ -6,7 +6,7 @@ import static org.junit.Assert.assertThat;
 
 public class SquareTest {
     @Test
-    public void whenBoundIs1 () {
+    public void whenBoundIs1() {
         Square check = new Square();
         int[] expected = {1};
         assertThat(
@@ -16,7 +16,7 @@ public class SquareTest {
     }
 
     @Test
-    public void whenBoundIs3 () {
+    public void whenBoundIs3() {
         Square check = new Square();
         int[] expected = {1, 4, 9};
         assertThat(
@@ -26,7 +26,7 @@ public class SquareTest {
     }
 
     @Test
-    public void whenBoundIs5 () {
+    public void whenBoundIs5() {
         Square check = new Square();
         int[] expected = {1, 4, 9, 16, 25};
         assertThat(
