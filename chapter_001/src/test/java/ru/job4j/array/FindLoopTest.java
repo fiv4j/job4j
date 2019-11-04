@@ -22,4 +22,22 @@ public class FindLoopTest {
                 is(-1)
         );
     }
+
+    @Test
+    public void whenElFoundWithStartAndFinish() {
+        FindLoop test = new FindLoop();
+        assertThat(
+                test.indexOf(new int[]{1, 3, 5, 7, 12}, 7, 2, 4),
+                is(3)
+        );
+    }
+
+    @Test
+    public void whenElNotFoundWithStartAndFinish() {
+        FindLoop test = new FindLoop();
+        assertThat(
+                test.indexOf(new int[]{1, 3, 5, 7, 12}, 7, 0, 2),
+                is(-1)
+        );
+    }
 }
