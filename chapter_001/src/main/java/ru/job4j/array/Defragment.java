@@ -2,22 +2,21 @@ package ru.job4j.array;
 
 public class Defragment {
     public static String[] compress(String[] array) {
-        for (int index = 0; index < array.length; index++) {
-            String cell = array[index];
-            if (cell == null) {
-                String notNullString = null;
-                for (int i = index; i < array.length; i++) {
+        boolean hasNullOnly = false;
+        int index = 0;
+        while (!hasNullOnly && index < array.length) {
+            if (array[index] == null) {
+                hasNullOnly = true;
+                for (int i = index + 1; i < array.length; i++) {
                     if (array[i] != null) {
-                        notNullString = array[i];
+                        array[index] = array[i];
                         array[i] = null;
+                        hasNullOnly = false;
                         break;
                     }
                 }
-                if (notNullString == null) {
-                    break;
-                }
-                array[index] = notNullString;
             }
+            index++;
         }
         return array;
     }
