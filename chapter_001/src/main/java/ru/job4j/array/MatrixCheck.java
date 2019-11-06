@@ -3,7 +3,24 @@ package ru.job4j.array;
 public class MatrixCheck {
     public static boolean isWin(char[][] board) {
         printBoard(board);
-        return isLineWin(board) || isRowWin(board);
+        char winChar = 'X';
+        int[] rows = new int[board.length];
+        int[] lines = new int[board.length];
+        for (int row = 0; row < board.length; row++) {
+            for (int cell = 0; cell < board.length; cell++) {
+                if (board[row][cell] == winChar) {
+                    lines[cell] += 1;
+                    rows[row] += 1;
+                }
+                if (lines[cell] == 5) {
+                    return true;
+                }
+            }
+            if (rows[row] == 5) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private static void printBoard(char[][] board) {
@@ -14,34 +31,6 @@ public class MatrixCheck {
             }
             System.out.println();
         }
-    }
-    private static boolean isLineWin(char[][] board) {
-        char winChar = 'X';
-        for (int row = 0; row < board.length; row++) {
-            for (int cell = 0; cell < board.length - 1; cell++) {
-                if (board[row][cell] != winChar || board[row][cell] != board[row][cell + 1]) {
-                    break;
-                }
-                if (cell == board.length - 2) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-    private static boolean isRowWin(char[][] board) {
-        char winChar = 'X';
-        for (int cell = 0; cell < board.length; cell++) {
-            for (int row = 0; row < board.length - 1; row++) {
-                if (board[row][cell] != winChar || board[row][cell] != board[row + 1][cell]) {
-                    break;
-                }
-                if (row == board.length - 2) {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 
     public static void main(String[] args) {
