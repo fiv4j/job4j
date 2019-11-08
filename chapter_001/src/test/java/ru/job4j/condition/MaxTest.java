@@ -5,33 +5,100 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class MaxTest {
+    // max(a, b)
     @Test
-    public void whenMax1To2Then2() {
+    public void when1And2Then2() {
         int result = Max.max(1, 2);
         assertThat(result, is(2));
     }
 
     @Test
-    public void whenMax100To50Then100() {
+    public void when10And2Then10() {
         assertThat(
-                Max.max(100, 50),
-                is(100)
+                Max.max(10, 2),
+                is(10)
         );
     }
 
     @Test
-    public void whenMax10To50Then50() {
-        assertThat(
-                Max.max(10, 50),
-                is(50)
-        );
-    }
-
-    @Test
-    public void whenMax22To22Then22() {
+    public void when22And22Then22() {
         assertThat(
                 Max.max(22, 22),
                 is(22)
+        );
+    }
+
+    // max(a, b, c)
+    @Test
+    public void when1And2And3Then3() {
+        assertThat(
+                Max.max(1, 2, 3),
+                is(3)
+        );
+    }
+
+    @Test
+    public void when1And5And3Then5() {
+        assertThat(
+                Max.max(1, 5, 3),
+                is(5)
+        );
+    }
+
+    @Test
+    public void when10And2And3Then10() {
+        assertThat(
+                Max.max(10, 2, 3),
+                is(10)
+        );
+    }
+
+    @Test
+    public void when10And10And10Then10() {
+        assertThat(
+                Max.max(10, 10, 10),
+                is(10)
+        );
+    }
+
+    // max(a, b, c, d)
+    @Test
+    public void when1And2And3And4Then4() {
+        assertThat(
+                Max.max(1, 2, 3, 4),
+                is(4)
+        );
+    }
+
+    @Test
+    public void when1And2And30And4Then30() {
+        assertThat(
+                Max.max(1, 2, 30, 4),
+                is(30)
+        );
+    }
+
+    @Test
+    public void when1And20And3And4Then20() {
+        assertThat(
+                Max.max(1, 20, 3, 4),
+                is(20)
+        );
+    }
+
+    @Test
+    public void when10And2And3And4Then4() {
+        assertThat(
+                Max.max(10, 2, 3, 4),
+                is(10)
+        );
+    }
+
+    @Test
+    public void when10And10And10And10Then10() {
+        assertThat(
+                Max.max(10, 10, 10, 10),
+                is(10)
         );
     }
 }
