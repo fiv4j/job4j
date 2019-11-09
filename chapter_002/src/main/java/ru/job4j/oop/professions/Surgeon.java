@@ -6,7 +6,11 @@ public class Surgeon extends Doctor {
         super(name);
     }
 
-    public void performSurgery(Pacient pacient) {}
+    public void performSurgery(Pacient pacient) {
 
-    public void disposeBodyParts(BodyParts[] bodyParts) {}
+    }
+
+    public void disposeBodyParts(BodyParts[] bodyParts) {
+
+    }
 }

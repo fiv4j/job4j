@@ -6,7 +6,11 @@ public class Dentist extends Doctor {
         super(name);
     }
 
-    public void removeTooth(Pacient pacient) {}
+    public void removeTooth(Pacient pacient) {
 
-    public void fixTooth(Pacient pacient) {}
+    }
+
+    public void fixTooth(Pacient pacient) {
+
+    }
 }

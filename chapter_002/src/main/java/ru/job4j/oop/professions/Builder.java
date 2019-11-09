@@ -10,5 +10,7 @@ public class Builder extends Engineer {
         return new ConstructionPlan();
     }
 
-    public void testEquipment(Equipment eq) {}
+    public void testEquipment(Equipment eq) {
+
+    }
 }
