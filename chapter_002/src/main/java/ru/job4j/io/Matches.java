@@ -7,7 +7,8 @@ public class Matches {
         Scanner scanner = new Scanner(System.in);
         int matches = 11;
         int gamer = 1;
-        while (true) {
+        boolean run = true;
+        while (run) {
             System.out.println("На столе " + matches + " спичек.");
             System.out.println("Ход " + gamer + " игрока. Вы можете взять от 1 до 3 спичек.");
             int matchesTaken;
@@ -19,7 +20,7 @@ public class Matches {
             matches -= matchesTaken;
             if (matches <= 0) {
                 System.out.println("Победил " + gamer + " игрок");
-                break;
+                run = false;
             }
             gamer = gamer == 1 ? 2 : 1;
         }
