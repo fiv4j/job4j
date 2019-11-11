@@ -1,5 +1,6 @@
 package ru.job4j.tracker;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Tracker {
@@ -41,9 +42,14 @@ public class Tracker {
      */
     public Item findById(String id) {
         Item result = null;
+        boolean isFound = false;
         for (Item item: this.items) {
-            if (item != null && item.getId().equals(id)) {
+            if (item == null || isFound) {
+                break;
+            }
+            if (item.getId().equals(id)) {
                 result = item;
+                isFound = true;
             }
         }
         return result;
@@ -59,11 +65,14 @@ public class Tracker {
         Item[] result = new Item[position];
         int resIndex = 0;
         for (Item item: this.items) {
-            if (item != null && item.getName().equals(key)) {
+            if (item == null) {
+                break;
+            }
+            if (item.getName().equals(key)) {
                 result[resIndex++] = item;
             }
         }
-        return result;
+        return Arrays.copyOf(result, resIndex);
     }
 
     /**
@@ -72,20 +81,7 @@ public class Tracker {
      * @return Копия массива-хранилища без null элементов
      */
     public Item[] findAll() {
-        int nullCount = 0;
-        for (Item item: this.items) {
-            if (item == null) {
-                nullCount++;
-            }
-        }
-        Item[] result = new Item[this.items.length - nullCount];
-        int resIndex = 0;
-        for (Item item: this.items) {
-            if (item != null) {
-                result[resIndex++] = item;
-            }
-        }
-        return result;
+        return Arrays.copyOf(this.items, position);
     }
 
     /**
@@ -98,9 +94,9 @@ public class Tracker {
      */
     public boolean replace(String id, Item item) {
         boolean isReplaced = false;
-        for (int i = 0; !isReplaced && i < this.items.length; i++) {
-            if (this.items[i] != null && this.items[i].getId().equals(id)) {
-                this.items[i] = item;
+        for (int i = 0; !isReplaced && i < position; i++) {
+            if (this.items[i].getId().equals(id)) {
+                this.items[i].setName(item.getName());
                 isReplaced = true;
             }
         }
@@ -118,8 +114,8 @@ public class Tracker {
      */
     public boolean delete(String id) {
         boolean isDeleted = false;
-        for (int i = 0; !isDeleted && i < this.items.length; i++) {
-            if (this.items[i] != null && this.items[i].getId().equals(id)) {
+        for (int i = 0; !isDeleted && i < position; i++) {
+            if (this.items[i].getId().equals(id)) {
                 System.arraycopy(
                         this.items,
                         i + 1,
