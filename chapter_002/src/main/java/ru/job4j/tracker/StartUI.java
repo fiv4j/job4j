@@ -2,33 +2,33 @@ package ru.job4j.tracker;
 
 public class StartUI {
 
-    private static void createItem(Input input, Tracker tracker) {
+    public static void createItem(Input input, Tracker tracker) {
         System.out.println("=== Create a new Item ====");
         String name = input.askStr("Enter name: ");
         Item item = new Item(name);
         tracker.add(item);
     }
 
-    private static void showAllItems(Input input, Tracker tracker) {
+    public static void showAllItems(Input input, Tracker tracker) {
         System.out.println("=== Show all items ====");
         for (Item item : tracker.findAll()) {
             System.out.println(item.getId() + " : " + item.getName());
         }
     }
 
-    private static void editItem(Input input, Tracker tracker) {
+    public static void editItem(Input input, Tracker tracker) {
         System.out.println("=== Edit item ====");
         String id = input.askStr("Enter item's id you would change: ");
         Item newItem = new Item(input.askStr("Enter new item's name: "));
         tracker.replace(id, newItem);
     }
 
-    private static void deleteItem(Input input, Tracker tracker) {
+    public static void deleteItem(Input input, Tracker tracker) {
         System.out.println("=== Delete item ====");
         tracker.delete(input.askStr("Enter item's id you would delete: "));
     }
 
-    private static void findItemById(Input input, Tracker tracker) {
+    public static void findItemById(Input input, Tracker tracker) {
         System.out.println("=== Find item by Id ====");
         Item item = tracker.findById(input.askStr("Enter item's id you would find: "));
         if (item == null) {
@@ -38,7 +38,7 @@ public class StartUI {
         }
     }
 
-    private static void findItemsByName(Input input, Tracker tracker) {
+    public static void findItemsByName(Input input, Tracker tracker) {
         System.out.println("=== Find item by Name ====");
         Item[] result = tracker.findByName(input.askStr("Enter item's name you would find: "));
         if (result.length == 0) {
