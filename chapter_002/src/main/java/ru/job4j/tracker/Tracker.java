@@ -43,12 +43,9 @@ public class Tracker {
     public Item findById(String id) {
         Item result = null;
         boolean isFound = false;
-        for (Item item: this.items) {
-            if (item == null || isFound) {
-                break;
-            }
-            if (item.getId().equals(id)) {
-                result = item;
+        for (int i = 0; !isFound && i < position; i++) {
+            if (this.items[i].getId().equals(id)) {
+                result = this.items[i];
                 isFound = true;
             }
         }
