@@ -32,7 +32,7 @@ public class StartUITest {
 
         String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
                 .add("Menu.")
-                .add("0. Stub action")
+                .add("0. Stub action.")
                 .toString();
         assertThat(out.toString(), is(expect));
 

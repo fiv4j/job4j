@@ -1,9 +1,9 @@
 package ru.job4j.tracker;
 
-public class DeleteAction implements UserAction {
-    @Override
-    public String name() {
-        return "=== Delete item ====";
+public class DeleteAction extends BaseAction {
+
+    DeleteAction() {
+        this.actionName = "Delete item.";
     }
 
     @Override
