@@ -2,7 +2,7 @@ package ru.job4j.tracker;
 
 public class FindByIdAction extends BaseAction {
 
-    FindByIdAction() {
+    public FindByIdAction() {
         this.actionName = "Find item by id.";
     }
 

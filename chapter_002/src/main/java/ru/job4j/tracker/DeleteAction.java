@@ -2,7 +2,7 @@ package ru.job4j.tracker;
 
 public class DeleteAction extends BaseAction {
 
-    DeleteAction() {
+    public DeleteAction() {
         this.actionName = "Delete item.";
     }
 

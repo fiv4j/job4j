@@ -2,7 +2,7 @@ package ru.job4j.tracker;
 
 public class FindByNameAction extends BaseAction {
 
-    FindByNameAction() {
+    public FindByNameAction() {
         this.actionName = "Find item by name.";
     }
 

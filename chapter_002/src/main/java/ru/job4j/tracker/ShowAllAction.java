@@ -2,7 +2,7 @@ package ru.job4j.tracker;
 
 public class ShowAllAction extends BaseAction {
 
-    ShowAllAction() {
+    public ShowAllAction() {
         this.actionName = "Show all.";
     }
 

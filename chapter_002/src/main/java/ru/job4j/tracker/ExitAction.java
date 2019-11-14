@@ -2,7 +2,7 @@ package ru.job4j.tracker;
 
 public class ExitAction extends BaseAction {
 
-    ExitAction() {
+    public ExitAction() {
         this.actionName = "Exit.";
     }
 

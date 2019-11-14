@@ -2,7 +2,7 @@ package ru.job4j.tracker;
 
 public class CreateAction extends BaseAction {
 
-    CreateAction() {
+    public CreateAction() {
         this.actionName = "Create item.";
     }
 

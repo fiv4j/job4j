@@ -2,7 +2,7 @@ package ru.job4j.tracker;
 
 public class EditAction extends BaseAction {
 
-    EditAction() {
+    public EditAction() {
         this.actionName = "Edit item.";
     }
 
