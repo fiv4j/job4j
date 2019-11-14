@@ -20,6 +20,9 @@ public class ValidateInput implements Input {
         while (invalid) {
             try {
                 value = input.askInt(question, max);
+                if (value < 0 || value >= max) {
+                    throw new IllegalStateException(String.format("Out of about %s > [0, %s]", value, max));
+                }
                 invalid = false;
             } catch (IllegalStateException ex) {
                 System.out.println("Please select key from menu.");

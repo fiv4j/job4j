@@ -25,8 +25,15 @@ public class ValidateInputTest {
 
     @Test
     public void whenInvalidInput() {
-        ValidateInput input = new ValidateInput(new StubInput(new String[] {"invalid", "1"}));
+        ValidateInput input = new ValidateInput(new StubInput(new String[] {"invalid", "0"}));
         input.askInt("Enter", 1);
         assertThat(out.toString(), is(String.format("Please enter a valid data again.%n")));
+    }
+
+    @Test
+    public void whenNotInRangeInput() {
+        ValidateInput input = new ValidateInput(new StubInput(new String[] {"2", "1"}));
+        input.askInt("Enter", 2);
+        assertThat(out.toString(), is(String.format("Please select key from menu.%n")));
     }
 }
