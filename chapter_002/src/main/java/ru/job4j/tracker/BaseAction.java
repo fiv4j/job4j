@@ -2,10 +2,10 @@ package ru.job4j.tracker;
 
 public abstract class BaseAction implements UserAction {
 
-    protected String actionName;
+    private String actionName;
 
-    protected BaseAction() {
-        this.actionName = "Do something";
+    public BaseAction(String actionName) {
+        this.actionName = actionName;
     }
 
     @Override

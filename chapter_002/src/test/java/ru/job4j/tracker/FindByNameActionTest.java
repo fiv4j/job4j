@@ -30,7 +30,7 @@ public class FindByNameActionTest {
         tracker.add(item);
         Input input = new StubInput(new String[] {"Difficult name"});
 
-        new FindByNameAction().execute(input, tracker);
+        new FindByNameAction("Show all.").execute(input, tracker);
         String expected = new StringJoiner(" : ", "", System.lineSeparator())
                 .add(item.getId())
                 .add(item.getName())
@@ -46,7 +46,7 @@ public class FindByNameActionTest {
         tracker.add(item);
         Input input = new StubInput(new String[] {"Different name"});
 
-        new FindByNameAction().execute(input, tracker);
+        new FindByNameAction("Show all.").execute(input, tracker);
         String expected = new StringJoiner("", "", System.lineSeparator())
                 .add("No items found.")
                 .toString();

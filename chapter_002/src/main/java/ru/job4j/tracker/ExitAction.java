@@ -2,8 +2,8 @@ package ru.job4j.tracker;
 
 public class ExitAction extends BaseAction {
 
-    public ExitAction() {
-        this.actionName = "Exit.";
+    public ExitAction(String actionName) {
+        super(actionName);
     }
 
     @Override

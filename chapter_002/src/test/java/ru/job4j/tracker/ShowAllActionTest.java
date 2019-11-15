@@ -32,7 +32,7 @@ public class ShowAllActionTest {
         Item item = new Item("Test item");
         tracker.add(item);
 
-        new ShowAllAction().execute(new StubInput(new String[] {}), tracker);
+        new ShowAllAction("Show all.").execute(new StubInput(new String[] {}), tracker);
 
         String expected = new StringJoiner(" : ", "", System.lineSeparator())
                 .add(item.getId())

@@ -3,8 +3,8 @@ package ru.job4j.tracker;
 public class StubAction extends BaseAction {
     private boolean call = false;
 
-    public StubAction() {
-        this.actionName = "Stub action.";
+    public StubAction(String actionName) {
+        super(actionName);
     }
 
     @Override

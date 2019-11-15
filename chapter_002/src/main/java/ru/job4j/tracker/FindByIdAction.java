@@ -2,8 +2,8 @@ package ru.job4j.tracker;
 
 public class FindByIdAction extends BaseAction {
 
-    public FindByIdAction() {
-        this.actionName = "Find item by id.";
+    public FindByIdAction(String actionName) {
+        super(actionName);
     }
 
     @Override

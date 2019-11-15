@@ -2,8 +2,8 @@ package ru.job4j.tracker;
 
 public class ShowAllAction extends BaseAction {
 
-    public ShowAllAction() {
-        this.actionName = "Show all.";
+    public ShowAllAction(String actionName) {
+        super(actionName);
     }
 
     @Override

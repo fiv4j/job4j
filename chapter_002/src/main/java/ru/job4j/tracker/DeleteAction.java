@@ -2,8 +2,8 @@ package ru.job4j.tracker;
 
 public class DeleteAction extends BaseAction {
 
-    public DeleteAction() {
-        this.actionName = "Delete item.";
+    public DeleteAction(String actionName) {
+        super(actionName);
     }
 
     @Override

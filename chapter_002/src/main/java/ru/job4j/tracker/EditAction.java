@@ -2,8 +2,8 @@ package ru.job4j.tracker;
 
 public class EditAction extends BaseAction {
 
-    public EditAction() {
-        this.actionName = "Edit item.";
+    public EditAction(String actionName) {
+        super(actionName);
     }
 
     @Override

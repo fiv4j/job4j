@@ -2,8 +2,8 @@ package ru.job4j.tracker;
 
 public class FindByNameAction extends BaseAction {
 
-    public FindByNameAction() {
-        this.actionName = "Find item by name.";
+    public FindByNameAction(String actionName) {
+        super(actionName);
     }
 
     @Override
