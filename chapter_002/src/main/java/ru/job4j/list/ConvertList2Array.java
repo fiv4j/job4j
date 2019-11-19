@@ -6,12 +6,15 @@ import java.util.List;
 public class ConvertList2Array {
 
     public int[][] toArray(List<Integer> list, int rows) {
-        int cells = list.size() / rows + ((list.size() % rows == 0) ? 0 : 1);
+        int cells = (int) Math.ceil((double) list.size() / rows);
         int[][] array = new int[rows][cells];
-        int idx = 0;
-        for (int[] row: array) {
-            for (int i = 0; i < row.length; i++) {
-                row[i] = idx < list.size() ? list.get(idx++) : 0;
+        int x = 0;
+        int y = 0;
+        for (Integer el: list) {
+            array[x][y++] = el;
+            if (y == cells) {
+                y = 0;
+                x++;
             }
         }
         return array;
