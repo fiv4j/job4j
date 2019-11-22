@@ -38,11 +38,9 @@ public class Tracker {
      */
     public Item findById(String id) {
         Item result = null;
-        for (Item item: this.items) {
-            if (item.getId().equals(id)) {
-                result = item;
-                break;
-            }
+        int index = this.findIndexById(id);
+        if (index != -1) {
+            result = this.items.get(index);
         }
         return result;
     }
@@ -104,27 +102,27 @@ public class Tracker {
      * @return true, если удаление прошло успешно, иначе false
      */
     public boolean delete(String id) {
-        boolean isDeleted = false;
-        for (int idx = 0; !isDeleted && idx < this.items.size(); idx++) {
-            if (this.items.get(idx).getId().equals(id)) {
-                this.items.remove(idx);
-                isDeleted = true;
+        int indexForDelete = this.findIndexById(id);
+        if (indexForDelete != -1) {
+            this.items.remove(indexForDelete);
+        }
+        return indexForDelete != -1;
+    }
+
+    /**
+     * Метод ищет индекс элемента по его id
+     *
+     * @param id id искомого элемента
+     * @return индекс элемента в списке, или -1, если не найден
+     */
+    private int findIndexById(String id) {
+        int result = -1;
+        for (Item currentItem: this.items) {
+            if (currentItem.getId().equals(id)) {
+                result = this.items.indexOf(currentItem);
+                break;
             }
         }
-//        for (int i = 0; !isDeleted && i < position; i++) {
-//            if (this.items[i].getId().equals(id)) {
-//                System.arraycopy(
-//                        this.items,
-//                        i + 1,
-//                        this.items,
-//                        i,
-//                        this.items.length - 1 - i
-//                );
-//                this.items[this.items.length - 1] = null;
-//                isDeleted = true;
-//                this.position--;
-//            }
-//        }
-        return isDeleted;
+        return result;
     }
 }

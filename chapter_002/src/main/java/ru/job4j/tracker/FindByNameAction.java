@@ -11,7 +11,7 @@ public class FindByNameAction extends BaseAction {
     @Override
     public boolean execute(Input input, Tracker tracker) {
         List<Item> result = tracker.findByName(input.askStr("Enter item's name you would find: "));
-        if (result.size() == 0) {
+        if (result.isEmpty()) {
             System.out.println("No items found.");
         } else {
             for (Item item: result) {
