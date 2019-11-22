@@ -1,18 +1,14 @@
 package ru.job4j.tracker;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Tracker {
     /**
      * Массив для хранение заявок.
      */
-    private final Item[] items = new Item[100];
-
-    /**
-     * Указатель ячейки для новой заявки.
-     */
-    private int position = 0;
+    private final List<Item> items = new ArrayList<>();
 
     /**
      * Метод реализаущий добавление заявки в хранилище
@@ -20,7 +16,7 @@ public class Tracker {
      */
     public Item add(Item item) {
         item.setId(this.generateId());
-        this.items[this.position++] = item;
+        this.items.add(item);
         return item;
     }
 
@@ -42,11 +38,10 @@ public class Tracker {
      */
     public Item findById(String id) {
         Item result = null;
-        boolean isFound = false;
-        for (int i = 0; !isFound && i < position; i++) {
-            if (this.items[i].getId().equals(id)) {
-                result = this.items[i];
-                isFound = true;
+        for (Item item: this.items) {
+            if (item.getId().equals(id)) {
+                result = item;
+                break;
             }
         }
         return result;
@@ -56,33 +51,29 @@ public class Tracker {
      * Метод ищет заявки в хранилище по имени заявки
      *
      * @param key название заявки, по которой производится поиск
-     * @return массив заявок, у которых name совпадает с key
+     * @return список заявок, у которых name совпадает с key
      */
-    public Item[] findByName(String key) {
-        Item[] result = new Item[position];
-        int resIndex = 0;
+    public List<Item> findByName(String key) {
+        List<Item> result = new ArrayList<>();
         for (Item item: this.items) {
-            if (item == null) {
-                break;
-            }
             if (item.getName().equals(key)) {
-                result[resIndex++] = item;
+                result.add(item);
             }
         }
-        return Arrays.copyOf(result, resIndex);
+        return result;
     }
 
     /**
-     * Метод возвращает копию хранилища без null элементов
+     * Метод возвращает ссылку на список-хранилище
      *
-     * @return Копия массива-хранилища без null элементов
+     * @return Ссылка на список-хранилище
      */
-    public Item[] findAll() {
-        return Arrays.copyOf(this.items, position);
+    public List<Item> findAll() {
+        return this.items;
     }
 
     /**
-     * Метод заменяет в массиве-хранилище элемент с данным id
+     * Метод заменяет в списке-хранилище элемент с данным id
      * на новый элемент item
      *
      * @param id id элемента хранилища, подлежащего замене
@@ -91,9 +82,12 @@ public class Tracker {
      */
     public boolean replace(String id, Item item) {
         boolean isReplaced = false;
-        for (int i = 0; !isReplaced && i < position; i++) {
-            if (this.items[i].getId().equals(id)) {
-                this.items[i].setName(item.getName());
+        for (Item currentItem: this.items) {
+            if (isReplaced) {
+                break;
+            }
+            if (currentItem.getId().equals(id)) {
+                currentItem.setName(item.getName());
                 isReplaced = true;
             }
         }
@@ -101,7 +95,7 @@ public class Tracker {
     }
 
     /**
-     * Метод удаляет из массива заявок элемент
+     * Метод удаляет из списка заявок элемент
      * с данным id. При этом все элементы справа от
      * удаляемого элемента смещаются на одну ячейку
      * влево
@@ -111,20 +105,26 @@ public class Tracker {
      */
     public boolean delete(String id) {
         boolean isDeleted = false;
-        for (int i = 0; !isDeleted && i < position; i++) {
-            if (this.items[i].getId().equals(id)) {
-                System.arraycopy(
-                        this.items,
-                        i + 1,
-                        this.items,
-                        i,
-                        this.items.length - 1 - i
-                );
-                this.items[this.items.length - 1] = null;
+        for (int idx = 0; !isDeleted && idx < this.items.size(); idx++) {
+            if (this.items.get(idx).getId().equals(id)) {
+                this.items.remove(idx);
                 isDeleted = true;
-                this.position--;
             }
         }
+//        for (int i = 0; !isDeleted && i < position; i++) {
+//            if (this.items[i].getId().equals(id)) {
+//                System.arraycopy(
+//                        this.items,
+//                        i + 1,
+//                        this.items,
+//                        i,
+//                        this.items.length - 1 - i
+//                );
+//                this.items[this.items.length - 1] = null;
+//                isDeleted = true;
+//                this.position--;
+//            }
+//        }
         return isDeleted;
     }
 }
