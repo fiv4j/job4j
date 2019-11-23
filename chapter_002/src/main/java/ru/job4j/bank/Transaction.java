@@ -59,7 +59,7 @@ public class Transaction {
     }
 
     public List<Account> getUserAccounts(String passport) {
-        List<Account> userAccounts = null;
+        List<Account> userAccounts = new ArrayList<>();
         User user = findUserByPassport(passport);
         if (user != null) {
             userAccounts = this.usersAccounts.get(user);
@@ -79,10 +79,8 @@ public class Transaction {
                 findUserByPassport(dstPassport),
                 dstRequisite
         );
-        if (srcAccount != null && dstAccount != null && srcAccount.getValue() >= amount) {
-            srcAccount.setValue(srcAccount.getValue() - amount);
-            dstAccount.setValue(dstAccount.getValue() + amount);
-            isDone = true;
+        if (srcAccount != null) {
+            isDone = srcAccount.transfer(dstAccount, amount);
         }
         return isDone;
     }

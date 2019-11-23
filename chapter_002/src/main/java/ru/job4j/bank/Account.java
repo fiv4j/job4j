@@ -24,6 +24,16 @@ public class Account {
         this.value = value;
     }
 
+    public boolean transfer(Account destionation, double amount) {
+        boolean isDone = false;
+        if (destionation != null && amount >= 0 && this.value >= amount) {
+            this.value -= amount;
+            destionation.value += amount;
+            isDone = true;
+        }
+        return isDone;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

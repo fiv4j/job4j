@@ -11,38 +11,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class TransactionTest {
 
     @Test
-    public void whenAddUserHeHisAccountsListIsEmpty() {
+    public void whenAddUserAndAccountHisAccountsListEqualsToExpected() {
         Transaction test = new Transaction();
         User user = new User("ivan", "123456");
-
-        test.addUser(user);
-
-        List<Account> result = test.getUserAccounts("123456");
-        List<Account> expected = new ArrayList<>();
-
-        assertThat(result, is(expected));
-    }
-
-    @Test
-    public void whenDeleteUserHisAccountsListIsNull() {
-        Transaction test = new Transaction();
-        User user = new User("ivan", "123456");
-        test.addUser(user);
-
-        test.deleteUser(user);
-
-        List<Account> result = test.getUserAccounts("123456");
-        List<Account> expected = null;
-        assertThat(result, is(expected));
-    }
-
-    @Test
-    public void whenAddAccountToUserAccountsListsEquals() {
-        Transaction test = new Transaction();
-        User user = new User("ivan", "123456");
-        test.addUser(user);
         Account userAccount = new Account("2202", 20);
 
+        test.addUser(user);
         test.addAccountToUser("123456", userAccount);
 
         List<Account> result = test.getUserAccounts("123456");
@@ -54,7 +28,53 @@ public class TransactionTest {
     }
 
     @Test
-    public void whenDeleteAccountFromUserAccountsListIsEmpty() {
+    public void whenAddAccountWithNoUserHisAccountsListIsEmpty() {
+        Transaction test = new Transaction();
+        Account userAccount = new Account("2202", 20);
+
+        test.addAccountToUser("123456", userAccount);
+
+        List<Account> result = test.getUserAccounts("123456");
+        List<Account> expected = new ArrayList<>();
+
+        assertThat(result, is(expected));
+    }
+
+    @Test
+    public void whenDeleteUserHisAccountsListIsEmpty() {
+        Transaction test = new Transaction();
+        User user = new User("ivan", "123456");
+        test.addUser(user);
+
+        test.deleteUser(user);
+
+        List<Account> result = test.getUserAccounts("123456");
+        List<Account> expected = new ArrayList<>();
+        assertThat(result, is(expected));
+    }
+
+    @Test
+    public void whenAddAccountToUserAccountsListEqualsToExpected() {
+        Transaction test = new Transaction();
+        User user = new User("ivan", "123456");
+        test.addUser(user);
+        Account firstAccount = new Account("2202", 20);
+        Account secondAccount = new Account("2000", 200);
+
+        test.addAccountToUser("123456", firstAccount);
+        test.addAccountToUser("123456", secondAccount);
+
+        List<Account> result = test.getUserAccounts("123456");
+        List<Account> expected = new ArrayList<>(Arrays.asList(
+                new Account("2202", 20),
+                new Account("2000", 200)
+        ));
+
+        assertThat(result, is(expected));
+    }
+
+    @Test
+    public void whenDeleteLastAccountFromUserAccountsListIsEmpty() {
         Transaction test = new Transaction();
         User user = new User("ivan", "123456");
         test.addUser(user);
