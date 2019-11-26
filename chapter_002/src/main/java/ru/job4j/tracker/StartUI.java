@@ -3,29 +3,37 @@ package ru.job4j.tracker;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class StartUI {
+    private final Input input;
+    private final Tracker tracker;
+    private final Consumer<String> output;
 
-    public void init(Input input, Tracker tracker, List<UserAction> actions) {
+    public StartUI(Input input, Tracker tracker, Consumer<String> output) {
+        this.input = input;
+        this.tracker = tracker;
+        this.output = output;
+    }
+
+    public void init(List<UserAction> actions) {
         boolean run = true;
         while (run) {
             this.showMenu(actions);
-            int select = input.askInt("Select: ", actions.size());
+            int select = this.input.askInt("Select: ", actions.size());
             UserAction action = actions.get(select);
-            run = action.execute(input, tracker);
+            run = action.execute(this.input, this.tracker, this.output);
         }
     }
 
     private void showMenu(List<UserAction> actions) {
-        System.out.println("Menu.");
+        output.accept("Menu.");
         for (int index = 0; index < actions.size(); index++) {
-            System.out.println(index + ". " + actions.get(index).info());
+            output.accept(index + ". " + actions.get(index).info());
         }
     }
 
     public static void main(String[] args) {
-        Input input = new ValidateInput(new ConsoleInput());
-        Tracker tracker = new Tracker();
         UserAction[] actionsArray = {
                 new CreateAction("Create Item."),
                 new ShowAllAction("Show all."),
@@ -36,6 +44,10 @@ public class StartUI {
                 new ExitAction("Exit.")
         };
         List<UserAction> actions = new ArrayList<>(Arrays.asList(actionsArray));
-        new StartUI().init(input, tracker, actions);
+        new StartUI(
+                new ValidateInput(new ConsoleInput()),
+                new Tracker(),
+                System.out::println
+        ).init(actions);
     }
 }
