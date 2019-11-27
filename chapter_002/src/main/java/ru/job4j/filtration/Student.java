@@ -4,10 +4,16 @@ import java.util.Objects;
 
 public class Student {
 
+    private String name;
     private int score;
 
-    public Student(int score) {
+    public Student(String name, int score) {
+        this.name = name;
         this.score = score;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getScore() {
@@ -23,12 +29,13 @@ public class Student {
             return false;
         }
         Student student = (Student) o;
-        return getScore() == student.getScore();
+        return getScore() == student.getScore()
+                && name.equals(student.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getScore());
+        return Objects.hash(name, getScore());
     }
 
     @Override
