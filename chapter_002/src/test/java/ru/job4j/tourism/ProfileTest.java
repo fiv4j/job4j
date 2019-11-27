@@ -32,4 +32,22 @@ public class ProfileTest {
 
         assertThat(result, is(expected));
     }
+
+    @Test
+    public void whenReturnUniqueAndSorted() {
+        List<Profile> profiles = Arrays.asList(
+                new Profile(new Address("C", "2", 21, 12)),
+                new Profile(new Address("A", "2", 21, 12)),
+                new Profile(new Address("B", "2", 21, 12)),
+                new Profile(new Address("A", "2", 21, 12))
+        );
+        List<Address> result = Profile.collectUniqueAndSort(profiles);
+        List<Address> expected = Arrays.asList(
+                new Address("A", "2", 21, 12),
+                new Address("B", "2", 21, 12),
+                new Address("C", "2", 21, 12)
+        );
+
+        assertThat(result, is(expected));
+    }
 }
