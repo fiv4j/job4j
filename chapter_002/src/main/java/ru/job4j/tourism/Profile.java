@@ -23,8 +23,9 @@ public class Profile {
     }
 
     public static List<Address> collectUniqueAndSort(List<Profile> profiles) {
-        return Profile.collect(profiles).stream().distinct()
+        return Profile.collect(profiles).stream()
                 .sorted(Comparator.comparing(Address::getCity))
+                .distinct()
                 .collect(Collectors.toList());
     }
 }
