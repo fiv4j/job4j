@@ -20,10 +20,6 @@ public class Account {
         return requisites;
     }
 
-    public void setValue(double value) {
-        this.value = value;
-    }
-
     public boolean transfer(Account destionation, double amount) {
         boolean isDone = false;
         if (destionation != null && amount >= 0 && this.value >= amount) {
