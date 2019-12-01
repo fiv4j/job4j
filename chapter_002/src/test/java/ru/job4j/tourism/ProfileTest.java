@@ -11,12 +11,12 @@ public class ProfileTest {
 
     @Test
     public void whenCollectedAddressesFromProfilesEqualToExpected() {
-        List<Profile> profiles = Arrays.asList(
+        List<Profile> profiles = List.of(
                 new Profile(new Address("1", "2", 21, 12)),
                 new Profile(new Address("1", "1", 21, 11))
         );
         List<Address> result = Profile.collect(profiles);
-        List<Address> expected = Arrays.asList(
+        List<Address> expected = List.of(
                 new Address("1", "2", 21, 12),
                 new Address("1", "1", 21, 11)
         );
@@ -26,23 +26,23 @@ public class ProfileTest {
 
     @Test
     public void whenProfilesHasNoElementsAddressesHasNoElementsToo() {
-        List<Profile> profiles = Arrays.asList();
+        List<Profile> profiles = List.of();
         List<Address> result = Profile.collect(profiles);
-        List<Address> expected = Arrays.asList();
+        List<Address> expected = List.of();
 
         assertThat(result, is(expected));
     }
 
     @Test
     public void whenReturnUniqueAndSorted() {
-        List<Profile> profiles = Arrays.asList(
+        List<Profile> profiles = List.of(
                 new Profile(new Address("C", "2", 21, 12)),
                 new Profile(new Address("A", "2", 21, 12)),
                 new Profile(new Address("B", "2", 21, 12)),
                 new Profile(new Address("A", "2", 21, 12))
         );
         List<Address> result = Profile.collectUniqueAndSort(profiles);
-        List<Address> expected = Arrays.asList(
+        List<Address> expected = List.of(
                 new Address("A", "2", 21, 12),
                 new Address("B", "2", 21, 12),
                 new Address("C", "2", 21, 12)

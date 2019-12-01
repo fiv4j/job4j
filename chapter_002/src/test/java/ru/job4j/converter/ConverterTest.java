@@ -1,8 +1,6 @@
 package ru.job4j.converter;
 
 import org.junit.Test;
-
-import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.core.Is.is;
@@ -17,7 +15,7 @@ public class ConverterTest {
                 {35, 14, -9}
         };
         List<Integer> result = Converter.convertMatrixToList(test);
-        List<Integer> expected = Arrays.asList(8, 20, 12, 35, 14, -9);
+        List<Integer> expected = List.of(8, 20, 12, 35, 14, -9);
 
         assertThat(result, is(expected));
     }

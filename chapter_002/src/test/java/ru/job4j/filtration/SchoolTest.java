@@ -12,39 +12,39 @@ import static org.junit.Assert.assertThat;
 public class SchoolTest {
     @Test
     public void whenReturnListOfScoreA() {
-        List<Student> students = Arrays.asList(
+        List<Student> students = List.of(
                 new Student("ivan", 20), new Student("fedor", 30),
                 new Student("anna", 40), new Student("petr", 50),
                 new Student("alex", 70), new Student("maria", 95)
         );
         List<Student> result = School.collect(students, s -> s.getScore() > 70 && s.getScore() <= 100);
-        List<Student> expected = Arrays.asList(new Student("maria", 95));
+        List<Student> expected = List.of(new Student("maria", 95));
 
         assertThat(result, is(expected));
     }
 
     @Test
     public void whenReturnListOfScoreB() {
-        List<Student> students = Arrays.asList(
+        List<Student> students = List.of(
                 new Student("ivan", 20), new Student("fedor", 30),
                 new Student("anna", 40), new Student("petr", 50),
                 new Student("alex", 70), new Student("maria", 95)
         );
         List<Student> result = School.collect(students, s -> s.getScore() > 50 && s.getScore() <= 70);
-        List<Student> expected = Arrays.asList(new Student("alex", 70));
+        List<Student> expected = List.of(new Student("alex", 70));
 
         assertThat(result, is(expected));
     }
 
     @Test
     public void whenReturnListOfScoreC() {
-        List<Student> students = Arrays.asList(
+        List<Student> students = List.of(
                 new Student("ivan", 20), new Student("fedor", 30),
                 new Student("anna", 40), new Student("petr", 50),
                 new Student("alex", 70), new Student("maria", 95)
         );
         List<Student> result = School.collect(students, s -> s.getScore() >= 0 && s.getScore() <= 50);
-        List<Student> expected = Arrays.asList(new Student("ivan", 20),
+        List<Student> expected = List.of(new Student("ivan", 20),
                 new Student("fedor", 30), new Student("anna", 40),
                 new Student("petr", 50));
 
@@ -55,7 +55,7 @@ public class SchoolTest {
     public void whenMapContainsAllElementsOfList() {
         Student st1 = new Student("ivan", 20);
         Student st2 = new Student("fedor", 30);
-        List<Student> students = Arrays.asList(st1, st2);
+        List<Student> students = List.of(st1, st2);
 
         Map<String, Student> studentMap = School.convertToMap(students);
 
@@ -75,7 +75,7 @@ public class SchoolTest {
                 null, new Student("alex", 70), new Student("maria", 95)
         );
         List<Student> result = School.levelOf(students, 50);
-        List<Student> expected = Arrays.asList(
+        List<Student> expected = List.of(
                 new Student("ivan", 20),
                 new Student("fedor", 30),
                 new Student("anna", 40)

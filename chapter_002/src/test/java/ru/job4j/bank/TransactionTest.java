@@ -1,7 +1,6 @@
 package ru.job4j.bank;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.junit.Test;
 
@@ -20,9 +19,7 @@ public class TransactionTest {
         test.addAccountToUser("123456", userAccount);
 
         List<Account> result = test.getUserAccounts("123456");
-        List<Account> expected = new ArrayList<>(Arrays.asList(
-                new Account("2202", 20)
-        ));
+        List<Account> expected = List.of(new Account("2202", 20));
 
         assertThat(result, is(expected));
     }
@@ -65,10 +62,10 @@ public class TransactionTest {
         test.addAccountToUser("123456", secondAccount);
 
         List<Account> result = test.getUserAccounts("123456");
-        List<Account> expected = new ArrayList<>(Arrays.asList(
+        List<Account> expected = List.of(
                 new Account("2202", 20),
                 new Account("2000", 200)
-        ));
+        );
 
         assertThat(result, is(expected));
     }
@@ -100,10 +97,10 @@ public class TransactionTest {
                 "123456", "2000", 20);
 
         List<Account> result = test.getUserAccounts("123456");
-        List<Account> expected = new ArrayList<>(Arrays.asList(
+        List<Account> expected = List.of(
                 new Account("2202", 0),
                 new Account("2000", 20)
-        ));
+        );
 
         assertThat(result, is(expected));
     }
@@ -133,10 +130,10 @@ public class TransactionTest {
                 "123456", "2000", 200);
 
         List<Account> result = test.getUserAccounts("123456");
-        List<Account> expected = new ArrayList<>(Arrays.asList(
+        List<Account> expected = List.of(
                 new Account("2202", 20),
                 new Account("2000", 0)
-        ));
+        );
 
         assertThat(result, is(expected));
     }

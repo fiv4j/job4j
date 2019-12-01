@@ -15,7 +15,7 @@ public class DepartureTest {
                 "K2", "K2\\SK1\\SSK1", "K2\\SK1\\SSK2", "K1", "K2\\SK1"};
         List<String> result = Arrays.asList(depArray);
         Departure.asc(result);
-        List<String> expected = Arrays.asList(
+        List<String> expected = List.of(
                 "K1",
                 "K1\\SK1",
                 "K1\\SK1\\SSK1",
@@ -35,7 +35,7 @@ public class DepartureTest {
                 "K2", "K2\\SK1\\SSK1", "K2\\SK1\\SSK2", "K1", "K2\\SK1"};
         List<String> result = Arrays.asList(depArray);
         Departure.desc(result);
-        List<String> expected = Arrays.asList(
+        List<String> expected = List.of(
                 "K2",
                 "K2\\SK1",
                 "K2\\SK1\\SSK2",
@@ -56,7 +56,7 @@ public class DepartureTest {
         List<String> initList = Arrays.asList(depArray);
         List<String> result = Departure.fillGaps(initList);
         Departure.asc(result);
-        List<String> expected = Arrays.asList(
+        List<String> expected = List.of(
                 "K1",
                 "K1\\SK1",
                 "K1\\SK1\\SSK1",
