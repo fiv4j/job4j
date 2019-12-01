@@ -66,4 +66,21 @@ public class SchoolTest {
 
         assertThat(result, is(expected));
     }
+
+    @Test
+    public void whenLevelOfStudentsList() {
+        List<Student> students = Arrays.asList(
+                new Student("ivan", 20), null, new Student("fedor", 30),
+                new Student("anna", 40), null, new Student("petr", 50),
+                null, new Student("alex", 70), new Student("maria", 95)
+        );
+        List<Student> result = School.levelOf(students, 50);
+        List<Student> expected = Arrays.asList(
+                new Student("ivan", 20),
+                new Student("fedor", 30),
+                new Student("anna", 40)
+        );
+
+        assertThat(result, is(expected));
+    }
 }

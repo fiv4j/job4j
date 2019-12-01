@@ -2,7 +2,7 @@ package ru.job4j.filtration;
 
 import java.util.Objects;
 
-public class Student {
+public class Student implements Comparable<Student> {
 
     private String name;
     private int score;
@@ -41,5 +41,10 @@ public class Student {
     @Override
     public String toString() {
         return "Student{" + "score=" + score + '}';
+    }
+
+    @Override
+    public int compareTo(Student student) {
+        return Integer.compare(this.score, student.score);
     }
 }
