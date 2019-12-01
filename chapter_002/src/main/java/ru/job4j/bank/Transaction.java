@@ -19,17 +19,19 @@ public class Transaction {
     }
 
     private User findUserByPassport(String passport) {
-        return this.usersAccounts.keySet().stream()
-                .filter(x -> x.getPassport().equals(passport))
-                .findAny()
-                .orElse(null);
+        return passport != null ? this.usersAccounts.keySet().stream()
+                                    .filter(x -> x.getPassport().equals(passport))
+                                    .findAny()
+                                    .orElse(null)
+                                : null;
     }
 
     private Account findAccountByRequisite(User user, String requisite) {
-        return this.usersAccounts.get(user).stream()
-                .filter(x -> x.getRequisites().equals(requisite))
-                .findAny()
-                .orElse(null);
+        return user != null ? this.usersAccounts.get(user).stream()
+                                .filter(x -> x.getRequisites().equals(requisite))
+                                .findAny()
+                                .orElse(null)
+                            : null;
     }
 
     public void addAccountToUser(String passport, Account account) {
